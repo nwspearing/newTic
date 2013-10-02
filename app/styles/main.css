@@ -1,0 +1,84 @@
+body {
+    height: 2000px;
+    background: grey;
+}
+
+
+#container {
+    box-sizing: border-box;
+    margin: 0, auto;
+    height: 450px;
+    width: 500px;
+    padding-top: 55px;
+    padding-left: 88px;
+    background-color: white;
+    
+    background-image: url("../images/num-sign.jpg");
+
+    background-repeat: no-repeat;
+}
+
+#message_overlay {
+    box-sizing: border-box;
+    position: absolute;
+    top: 250px;
+    left: 125px;
+    height: 150px;
+    width: 300px;
+    padding: 50px;
+    font-size: 30px;
+    background: black;
+    color: white;
+    opacity: .8;
+    /*display: none;*/
+    z-index: -1;
+}
+
+
+header {
+    width: 500px;
+    text-align: center;
+    font-size: 40px;
+    background: black;
+    color: white;
+}
+
+        #column1 { float: left; }
+        #column2 { float: left; }
+        #column3 { float: left; }
+
+
+
+        #cell1_1 {  font-size: 100px; color: red; font-weight: 800;}
+        #cell1_2 {  font-size: 100px; color: red; font-weight: 800;}
+        #cell1_3 {  font-size: 100px; color: red; font-weight: 800;}
+        #cell1_4 { font-size: 100px; color: red; font-weight: 800;}
+        #cell1_5 { font-size: 100px; color: red; font-weight: 800;}
+        #cell1_6 {  font-size: 100px; color: red; font-weight: 800;}
+        #cell1_7 {  font-size: 100px; color: red; font-weight: 800;}
+        #cell1_8 {  font-size: 100px; color: red; font-weight: 800;}
+        #cell1_9 { font-size: 100px; color: red; font-weight: 800;}
+        div {width: 125px; height: 125px;}
+
+#notification {
+    height: 30px;
+    width: 500px;
+    text-align: center;
+    font-size: 24px;
+    background: grey;
+    color: white;
+    padding: 20px;
+}
+
+
+
+#btn1 {
+    height: 50px;
+    width: 500px;
+    text-align: center;
+    font-size: 24px;
+    background: green;
+    color: white;
+    padding: 10px;
+}
+
