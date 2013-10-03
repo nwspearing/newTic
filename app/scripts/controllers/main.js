@@ -1,5 +1,12 @@
 'use strict';
 
+angular.module('newTicApp')
+  .controller('MainCtrl', function ($scope) {
+    $scope.awesomeThings = "Whatever";
+      
+  });
+
+
 // angular.module('newTicApp')
 //   .controller('MainCtrl', function ($scope) {
 //     $scope.awesomeThings = [
@@ -11,7 +18,14 @@
 
 
 
-<script>
+
+// in html
+// ng-app
+// ng-controller
+
+// and referenced here
+
+// <script>
 
 
     var player_turn = 1;
@@ -24,6 +38,28 @@ var cellArray = [0,1,2,3,4,5,6,7,8];
 
 
     function playBox() {
+
+
+    	// WHAT HAPPENS IF YOU WIN / TIE
+
+         
+
+      function win()
+       {
+
+        document.getElementById("message_overlay").style.zIndex = "2";
+        document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>"+ "<input type='button' id='btn2' value='Start Again' onclick='startAgain()'/>";
+        document.getElementById("notification").innerHTML = "";
+     
+        }
+
+        function tie()
+        {
+           document.getElementById("message_overlay").style.zIndex = "2";
+           document.getElementById("message_overlay").innerHTML = "You both tied! " +"<br/>"+ "<input type='button' id='btn2' value='Start Again' onclick='startAgain()'/>";
+           document.getElementById("notification").innerHTML = "";
+
+        }
 
 
       if (event.target.innerHTML != "X" && event.target.innerHTML != "O") {
@@ -44,7 +80,7 @@ var cellArray = [0,1,2,3,4,5,6,7,8];
 
 
 
-
+ 	var i;
       for (i=0; i<9; ++i)
       {
    
@@ -56,26 +92,7 @@ var cellArray = [0,1,2,3,4,5,6,7,8];
   
 
    
-    // WHAT HAPPENS IF YOU WIN / TIE
-
-         
-
-      function win()
-       {
-
-        document.getElementById("message_overlay").style.zIndex = "2";
-        document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>"+ "<input type='button' id='btn2' value='Start Again' onclick='startAgain()'/>";
-        document.getElementById("notification").innerHTML = "";
-     
-        }
-
-        function tie()
-        {
-           document.getElementById("message_overlay").style.zIndex = "2";
-           document.getElementById("message_overlay").innerHTML = "You both tied! " +"<br/>"+ "<input type='button' id='btn2' value='Start Again' onclick='startAgain()'/>";
-           document.getElementById("notification").innerHTML = "";
-
-        }
+    
 
       // end test to see if they clicked an already filled block
      } 
@@ -149,4 +166,4 @@ var cellArray = [0,1,2,3,4,5,6,7,8];
 
   
 
-</script>
+// </script>
