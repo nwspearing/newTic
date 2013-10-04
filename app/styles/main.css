@@ -1,3 +1,29 @@
+#row_array {color: purple;}
+
+
+
+.sqr {
+    float: left;
+    font-size: 100px; 
+    color: red; 
+    font-weight: 800;
+    width: 125px; 
+    height: 125px;
+    
+
+}
+
+.topline {
+    border-top: 3px solid black;
+}
+
+.leftline {
+    border-left: 3px solid black;
+}
+
+
+
+
 body {
     height: 2000px;
     background: grey;
@@ -43,7 +69,10 @@ header {
     color: white;
 }
 
-        #column1 { float: left; }
+.clearfix {clear:both}
+
+
+/*        #column1 { float: left; }
         #column2 { float: left; }
         #column3 { float: left; }
 
@@ -58,7 +87,7 @@ header {
         #cell1_7 {  font-size: 100px; color: red; font-weight: 800;}
         #cell1_8 {  font-size: 100px; color: red; font-weight: 800;}
         #cell1_9 { font-size: 100px; color: red; font-weight: 800;}
-        div {width: 125px; height: 125px;}
+        div {width: 125px; height: 125px;}*/
 
 #notification {
     height: 30px;

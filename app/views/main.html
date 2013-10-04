@@ -1,6 +1,6 @@
-<header>tic-tac-toe</header>  
+<!-- <body ng-app=""> -->
 
-<!-- {{awesomeThings}} -->
+<header>tic-tac-toe</header>  
 
 <div id="notification">
 Player 1 - Your Turn
@@ -9,44 +9,43 @@ Player 1 - Your Turn
 
 <div id="container">
 
+<!-- <div id="container" ng-controller="MainCtrl">  -->
 
 <div id="message_overlay">
   Message Overlay
   <br>
 
-  <input type="button" id="btn2" value="Start Again" onclick="startAgain()"/>
+  <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/>
   
 </div>
 
 
 
+<!-- {{"cell" + $index}} -->
+
+<div id = "row_array" ng-repeat="row in ticTacToe">
+    <!-- {{$index}} -->
+  <!-- <div class="sqr" ng-repeat="cell in row track by $index" ng-click="cell=playerChoice()" ng-init="cell=''"> -->
+    <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row" ng-click="clickSquare($parent.$index, $index)">
+      <!-- <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row track by $index" ng-click="clickSquare($parent.$index, $index)"> -->
+      <!-- <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row track by $index" ng-click="cell='X'"> -->
+    <!-- <div ng-click="cell()"></div> -->
+     <!-- {{$parent.$index + "," + $index}} -->
+     {{cell}}
+    <!-- {{$parent.$index + "," + $index}} -->
+    <!-- {{cell}} -->
+  </div>
+
+<div class="clearfix"></div>
+
+</div>  <!-- end message overlay -->
+</div>    <!-- end container -->
 
 
-<div id="column1">
-  <div id="cell1_1" onclick="playBox()"/></div>
-  <div id="cell1_2" onclick="playBox()"></div>
-  <div id="cell1_3" onclick="playBox()"></div>
-</div>
-
-<div id="column2">
-  <div id="cell1_4" onclick="playBox()"></div>
-  <div id="cell1_5" onclick="playBox()"></div>
-  <div id="cell1_6" onclick="playBox()"></div>
-</div>
-
-<div id="column3">
-  <div id="cell1_7" onclick="playBox()"></div>
-  <div id="cell1_8" onclick="playBox()"></div>
-  <div id="cell1_9" onclick="playBox()"></div>
-</div>
+<input type="button" id="btn1" value="Quit and Start Again" ng-click="startAgain()"/>
 
 
 
 
-</div>   <!-- end container -->
-
-
-
-<input type="button" id="btn1" value="Quit and Start Again" onclick="startAgain()"/>
 
 
