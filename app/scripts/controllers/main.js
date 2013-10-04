@@ -44,6 +44,8 @@ $scope.clickSquare = function(row, column) {
 
       if (player_turn % 2) {
 
+
+      // <img src="{{m=ticTacToe[$parent.$index][$index];(m=='X'?'imgX.png':(m=='O'?'imgY.png':'blank.png'))}}" />
       // event.target.innerHTML="X";
       this.ticTacToe[row][column]= "X";
       
@@ -80,13 +82,13 @@ $scope.clickSquare = function(row, column) {
 
          // "<input type='button' value='Start Again' ng-click='startAgain()'/>"
          // <button ng-click='startAgain()'>Start Again</button>;
+         // ng-show   ng-hide
 
       function win()
        {
 
         document.getElementById("message_overlay").style.zIndex = "2";
         document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>";
-        
         document.getElementById("notification").innerHTML = "";
       
         }
@@ -113,22 +115,22 @@ $scope.clickSquare = function(row, column) {
             
 
           
-          if (this.ticTacToe[0][0] == this.ticTacToe[0][1] && this.ticTacToe[0][1]  != "" && this.ticTacToe[0][1]  == this.ticTacToe[0][2] )
+          if ($scope.ticTacToe[0][0] == $scope.ticTacToe[0][1] && $scope.ticTacToe[0][1]  != "" && $scope.ticTacToe[0][1]  == $scope.ticTacToe[0][2] )
               win();
 
-           if (this.ticTacToe[1][0] == this.ticTacToe[1][1] && this.ticTacToe[1][1]  != "" && this.ticTacToe[1][1]  == this.ticTacToe[1][2] )
+           if ($scope.ticTacToe[1][0] == $scope.ticTacToe[1][1] && $scope.ticTacToe[1][1]  != "" && $scope.ticTacToe[1][1]  == $scope.ticTacToe[1][2] )
               win();
-          if (this.ticTacToe[2][0] == this.ticTacToe[2][1] && this.ticTacToe[2][1]  != "" && this.ticTacToe[2][1]  == this.ticTacToe[2][2] )
+          if ($scope.ticTacToe[2][0] == $scope.ticTacToe[2][1] && $scope.ticTacToe[2][1]  != "" && $scope.ticTacToe[2][1]  == $scope.ticTacToe[2][2] )
               win();
-          if (this.ticTacToe[0][0] == this.ticTacToe[1][0] && this.ticTacToe[1][0]  != "" && this.ticTacToe[1][0]  == this.ticTacToe[2][0] )
+          if ($scope.ticTacToe[0][0] == $scope.ticTacToe[1][0] && $scope.ticTacToe[1][0]  != "" && $scope.ticTacToe[1][0]  == $scope.ticTacToe[2][0] )
               win();
-          if (this.ticTacToe[0][1] == this.ticTacToe[1][1] && this.ticTacToe[1][1]  != "" && this.ticTacToe[1][1]  == this.ticTacToe[2][1] )
+          if ($scope.ticTacToe[0][1] == $scope.ticTacToe[1][1] && $scope.ticTacToe[1][1]  != "" && $scope.ticTacToe[1][1]  == $scope.ticTacToe[2][1] )
               win();  
-          if (this.ticTacToe[0][2] == this.ticTacToe[1][2] && this.ticTacToe[1][2]  != "" && this.ticTacToe[1][2]  == this.ticTacToe[2][2] )
+          if ($scope.ticTacToe[0][2] == $scope.ticTacToe[1][2] && $scope.ticTacToe[1][2]  != "" && $scope.ticTacToe[1][2]  == $scope.ticTacToe[2][2] )
               win(); 
-            if (this.ticTacToe[0][0] == this.ticTacToe[1][1] && this.ticTacToe[1][1]  != "" && this.ticTacToe[1][1]  == this.ticTacToe[2][2] )
+            if ($scope.ticTacToe[0][0] == $scope.ticTacToe[1][1] && $scope.ticTacToe[1][1]  != "" && $scope.ticTacToe[1][1]  == $scope.ticTacToe[2][2] )
               win();
-             if (this.ticTacToe[0][2] == this.ticTacToe[1][1] && this.ticTacToe[1][1]  != "" && this.ticTacToe[1][1]  == this.ticTacToe[2][0] )
+             if ($scope.ticTacToe[0][2] == $scope.ticTacToe[1][1] && $scope.ticTacToe[1][1]  != "" && $scope.ticTacToe[1][1]  == $scope.ticTacToe[2][0] )
               win();
 
        
