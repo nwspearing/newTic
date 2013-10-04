@@ -78,21 +78,23 @@ $scope.clickSquare = function(row, column) {
    
     // WHAT HAPPENS IF YOU WIN / TIE
 
-         
+         // "<input type='button' value='Start Again' ng-click='startAgain()'/>"
+         // <button ng-click='startAgain()'>Start Again</button>;
 
       function win()
        {
 
         document.getElementById("message_overlay").style.zIndex = "2";
-        document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>"+ "<input type='button' id='btn2' value='Start Again' ng-click='startAgain()'/>";
+        document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>";
+        
         document.getElementById("notification").innerHTML = "";
-     
+      
         }
 
         function tie()
         {
            document.getElementById("message_overlay").style.zIndex = "2";
-           document.getElementById("message_overlay").innerHTML = "You both tied! " +"<br/>"+ "<input type='button' id='btn2' value='Start Again' ng-click='startAgain()'/>";
+           document.getElementById("message_overlay").innerHTML = "You both tied! " +"<br/>"+ "<input type='button' value='Start Again' ng-click='startAgain()'/>";
            document.getElementById("notification").innerHTML = "";
 
         }
@@ -152,7 +154,7 @@ $scope.clickSquare = function(row, column) {
     $scope.startAgain =function() {
 
     location.href="index.html";
-    
+
      };
 
 
