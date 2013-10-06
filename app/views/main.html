@@ -26,12 +26,13 @@ Player 1 - Your Turn
 <div id = "row_array" ng-repeat="row in ticTacToe">
     <!-- {{$index}} -->
   <!-- <div class="sqr" ng-repeat="cell in row track by $index" ng-click="cell=playerChoice()" ng-init="cell=''"> -->
-    <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row" ng-click="clickSquare($parent.$index, $index)">
+  <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row" ng-click="clickSquare(cell)">
+    <!-- <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row" ng-click="clickSquare($parent.$index, $index)"> -->
       <!-- <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row track by $index" ng-click="clickSquare($parent.$index, $index)"> -->
       <!-- <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row track by $index" ng-click="cell='X'"> -->
     <!-- <div ng-click="cell()"></div> -->
      <!-- {{$parent.$index + "," + $index}} -->
-     {{cell}}
+     {{cell.val}}
     <!-- {{$parent.$index + "," + $index}} -->
     <!-- {{cell}} -->
   </div>
