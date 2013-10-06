@@ -2,11 +2,12 @@
 
 angular.module('newTicApp').controller('MainCtrl', function($scope) {
 
-   var player_turn = 1;
+$scope.player_turn = 1;
 
 $scope.ticTacToe= [[{val:'', r:0,c:0},{val:'',r:0,c:1},{val:'',r:0,c:2}],
 [{val:'',r:1,c:0},{val:'',r:1,c:1},{val:'',r:1,c:2}],
 [{val:'', r:2,c:0},{val:'',r:2,c:1},{val:'',r:2,c:2}]];
+
 
 $scope.clickSquare = function(cell) { 
    // $scope.clickSquare = function(row, column) { 
@@ -59,7 +60,7 @@ $scope.clickSquare = function(cell) {
 
 
    
-      if (player_turn % 2) {
+      if ($scope.player_turn % 2) {
 
              
 
@@ -90,9 +91,9 @@ $scope.clickSquare = function(cell) {
      
     }
     
-    document.getElementById("notification").innerHTML = "Player "+((player_turn % 2)+1)+" - your turn!";
+    document.getElementById("notification").innerHTML = "Player "+(($scope.player_turn % 2)+1)+" - your turn!";
 
-    player_turn++;
+    $scope.player_turn++;
 
 
 
@@ -120,17 +121,21 @@ $scope.clickSquare = function(cell) {
       function win()
        {
 
-        document.getElementById("message_overlay").style.zIndex = "2";
-        document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>";
-        document.getElementById("notification").innerHTML = "";
+      
+        $scope.showWinMessage = true;
+        // document.getElementById("message_overlay").style.zIndex = "2";
+        // document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>";
+        // document.getElementById("notification").innerHTML = "";
       
         }
 
         function tie()
         {
-           document.getElementById("message_overlay").style.zIndex = "2";
+
+          $scope.showTieMessage = true;
+           // document.getElementById("message_overlay").style.zIndex = "2";
            // document.getElementById("message_overlay").innerHTML = "You both tied! " +"<br/>"+ "<input type='button' value='Start Again' ng-click='startAgain()'/>";
-           document.getElementById("notification").innerHTML = "";
+           // document.getElementById("notification").innerHTML = "";
 
         }
 
@@ -149,7 +154,7 @@ $scope.clickSquare = function(cell) {
      
 
 
-        if ( player_turn > 4 )
+        if ( $scope.player_turn > 4 )
         {
 
            // console.log(this.ticTacToe[cell.r][cell.c].val);
@@ -184,7 +189,7 @@ $scope.clickSquare = function(cell) {
                 // alert("test win 8--breaks it");
 
        
-          else if (player_turn > 9)
+          else if ($scope.player_turn > 9)
             {
              
               tie(); 

@@ -7,15 +7,25 @@ Player 1 - Your Turn
 </div>
 
 
-<div id="container">
+<div id="container" ng-init = "showWinMessage = false" ng-init = "showTieMessage = false">
 
 <!-- <div id="container" ng-controller="MainCtrl">  -->
 
-<div id="message_overlay">
-  Message Overlay
+<div id="win_message_overlay" ng-show="showWinMessage">
+  Player {{(player_turn %2)+1}} Wins!
   <br>
 
-  <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/>
+  <input type="button" id="btn2" ng-show="showWinMessage" ng-click="startAgain()"/>
+  <!-- <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/> -->
+  
+</div>
+
+<div id="tie_message_overlay" ng-show="showTieMessage">
+  You Tied!
+  <br>
+
+  <input type="button" id="btn2" ng-show="showTieMessage" ng-click="startAgain()"/>
+  <!-- <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/> -->
   
 </div>
 
