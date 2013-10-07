@@ -2,10 +2,15 @@
 
 <header>tic-tac-toe</header>  
 
-<div id="notification">
-Player 1 - Your Turn
+<div class="notification" ng-init ="showNotification = true" ng-show="showNotification">
+Player {{((player_turn+1) %2)+1}} - Your Turn
 </div>
 
+
+<div class="notification" ng-init ="showEndNotification = false" ng-show="showEndNotification">
+  Game Over
+</div>
+  
 
 <div id="container" ng-init = "showWinMessage = false" ng-init = "showTieMessage = false">
 
@@ -15,7 +20,7 @@ Player 1 - Your Turn
   Player {{(player_turn %2)+1}} Wins!
   <br>
 
-  <input type="button" id="btn2" ng-show="showWinMessage" ng-click="startAgain()"/>
+  <input type="button" id="btn2" value="Start New Game" ng-show="showWinMessage" ng-click="startAgain()"/>
   <!-- <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/> -->
   
 </div>
@@ -24,7 +29,7 @@ Player 1 - Your Turn
   You Tied!
   <br>
 
-  <input type="button" id="btn2" ng-show="showTieMessage" ng-click="startAgain()"/>
+  <input type="button" id="btn2" ng-show="showTieMessage" value="Start New Game" ng-click="startAgain()"/>
   <!-- <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/> -->
   
 </div>
@@ -53,7 +58,7 @@ Player 1 - Your Turn
 </div>    <!-- end container -->
 
 
-<input type="button" id="btn1" value="Quit and Start Again" ng-click="startAgain()"/>
+<input type="button" id="btn1" value="quit and start new game" ng-click="startAgain()"/>
 
 
 
