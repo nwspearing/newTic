@@ -162,34 +162,43 @@ $scope.clickSquare = function(cell) {
      
 
 
-        if ( $scope.player_turn > 4 )
+        if ($scope.player_turn > 4)
         {
 
            // console.log(this.ticTacToe[cell.r][cell.c].val);
           
 
 
-          if ($scope.ticTacToe[0][0].val == $scope.ticTacToe[0][1].val && $scope.ticTacToe[0][1].val != "" && $scope.ticTacToe[0][1].val  == $scope.ticTacToe[0][2].val )
-              win();
-              // alert("test win 1");
+          // if ($scope.ticTacToe[0][0].val == $scope.ticTacToe[0][1].val && $scope.ticTacToe[0][1].val != "" && $scope.ticTacToe[0][1].val  == $scope.ticTacToe[0][2].val )
+          //     win();
+          //     // alert("test win 1");
 
-           else if ($scope.ticTacToe[1][0].val == $scope.ticTacToe[1][1].val && $scope.ticTacToe[1][1].val != "" && $scope.ticTacToe[1][1].val  == $scope.ticTacToe[1][2].val )
-              win();
-              // alert("test win 2");
+          //  else if ($scope.ticTacToe[1][0].val == $scope.ticTacToe[1][1].val && $scope.ticTacToe[1][1].val != "" && $scope.ticTacToe[1][1].val  == $scope.ticTacToe[1][2].val )
+          //     win();
+          //     // alert("test win 2");
 
-          else if ($scope.ticTacToe[2][0].val == $scope.ticTacToe[2][1].val && $scope.ticTacToe[2][1].val != "" && $scope.ticTacToe[2][1].val  == $scope.ticTacToe[2][2].val )
-              // alert("test win 3 - breaks it" + $scope.ticTacToe[2][1].val);
-              win();
-          else if ($scope.ticTacToe[0][0].val == $scope.ticTacToe[1][0].val && $scope.ticTacToe[1][0].val != "" && $scope.ticTacToe[1][0].val  == $scope.ticTacToe[2][0].val )
-              win();
-              // alert("test win 4");
-          else if ($scope.ticTacToe[0][1].val == $scope.ticTacToe[1][1].val && $scope.ticTacToe[1][1].val != "" && $scope.ticTacToe[1][1].val  == $scope.ticTacToe[2][1].val )
-              win();  
-             // alert("test win 5");
-          else if ($scope.ticTacToe[0][2].val == $scope.ticTacToe[1][2].val && $scope.ticTacToe[1][2].val != "" && $scope.ticTacToe[1][2].val  == $scope.ticTacToe[2][2].val )
-              win();
-              // alert("test win 6--breaks it"); 
-            else if ($scope.ticTacToe[0][0].val == $scope.ticTacToe[1][1].val && $scope.ticTacToe[1][1].val != "" && $scope.ticTacToe[1][1].val  == $scope.ticTacToe[2][2].val )
+          // else if ($scope.ticTacToe[2][0].val == $scope.ticTacToe[2][1].val && $scope.ticTacToe[2][1].val != "" && $scope.ticTacToe[2][1].val  == $scope.ticTacToe[2][2].val )
+          //     // alert("test win 3 - breaks it" + $scope.ticTacToe[2][1].val);
+          //     win();
+          // else if ($scope.ticTacToe[0][0].val == $scope.ticTacToe[1][0].val && $scope.ticTacToe[1][0].val != "" && $scope.ticTacToe[1][0].val  == $scope.ticTacToe[2][0].val )
+          //     win();
+          //     // alert("test win 4");
+          // else if ($scope.ticTacToe[0][1].val == $scope.ticTacToe[1][1].val && $scope.ticTacToe[1][1].val != "" && $scope.ticTacToe[1][1].val  == $scope.ticTacToe[2][1].val )
+          //     win();  
+          //    // alert("test win 5");
+          // else if ($scope.ticTacToe[0][2].val == $scope.ticTacToe[1][2].val && $scope.ticTacToe[1][2].val != "" && $scope.ticTacToe[1][2].val  == $scope.ticTacToe[2][2].val )
+          //     win();
+          //     // alert("test win 6--breaks it"); 
+
+
+                for (i=0; i<3; ++i)
+                  {
+                if ($scope.ticTacToe[i][0].val == $scope.ticTacToe[i][1].val && $scope.ticTacToe[i][1].val != "" && $scope.ticTacToe[i][1].val == $scope.ticTacToe[i][2].val)
+                  win();
+                  else if ($scope.ticTacToe[0][i].val == $scope.ticTacToe[1][i].val && $scope.ticTacToe[1][i].val != "" && $scope.ticTacToe[1][i].val == $scope.ticTacToe[2][i].val)
+                  win();
+
+              else if ($scope.ticTacToe[0][0].val == $scope.ticTacToe[1][1].val && $scope.ticTacToe[1][1].val != "" && $scope.ticTacToe[1][1].val  == $scope.ticTacToe[2][2].val )
             
               win();
                  // alert("diagonal win 1");
@@ -199,17 +208,18 @@ $scope.clickSquare = function(cell) {
               // alert("diagonal win 2");  
               win();
                 // alert("test win 8--breaks it");
-              
-            else if ($scope.player_turn > 9)
-            
+              else if ($scope.player_turn > 9) 
+      
              // alert("tied");
-              tie(); 
-
-            
-              
+              tie();
             // end testing for win
 
+            }
+                         
+               
+
           }
+
 
        // end playBox
   // }
