@@ -3,7 +3,7 @@
 <header>tic-tac-toe</header>  
 
 <div class="notification" ng-init ="showNotification = true" ng-show="showNotification">
-Player {{((player_turn.turn+1) %2)+1}} - Your Turn
+Player {{((rooms.player_turn+1) %2)+1}} - Your Turn
 </div>
 
 
@@ -17,7 +17,7 @@ Player {{((player_turn.turn+1) %2)+1}} - Your Turn
 <!-- <div id="container" ng-controller="MainCtrl">  -->
 
 <div id="win_message_overlay" ng-show="showWinMessage">
-  Player {{(player_turn.turn %2)+1}} Wins!
+  Player {{(rooms.player_turn %2)+1}} Wins!
   <br>
 
   <input type="button" id="btn2" value="Start New Game" ng-show="showWinMessage" ng-click="startAgain()"/>
@@ -38,7 +38,7 @@ Player {{((player_turn.turn+1) %2)+1}} - Your Turn
 
 <!-- {{"cell" + $index}} -->
 
-<div id = "row_array" ng-repeat="row in ticTacToe">
+<div id = "row_array" ng-repeat="row in rooms.ticTacToe">
     <!-- {{$index}} -->
   <!-- <div class="sqr" ng-repeat="cell in row track by $index" ng-click="cell=playerChoice()" ng-init="cell=''"> -->
   <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row" ng-click="clickSquare(cell)">
