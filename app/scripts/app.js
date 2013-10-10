@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newTicApp', [])
+angular.module('newTicApp', ["firebase"])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -11,3 +11,7 @@ angular.module('newTicApp', [])
         redirectTo: '/'
       });
   });
+
+
+
+

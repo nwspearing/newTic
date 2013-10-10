@@ -1,12 +1,41 @@
 // 'use strict';
 
-angular.module('newTicApp').controller('MainCtrl', function($scope) {
 
-$scope.player_turn = 1;
+angular.module('newTicApp').controller('MainCtrl', function($scope, angularFire) {
+
+var database = new Firebase("https://newtic-nws.firebaseio.com");
+var disconnectRef = new Firebase('https://newtic-nws.firebaseio.com/disconnectdata');
+
+
+// var database = new Firebase("https://newtic-nws.firebaseio.com");
+// var database = new Firebase("https://newtic-nws.firebaseio.com/rooms/"+ player1:player2);
+
+//random math player 1
+//random math player 2
+
+
+
+
+$scope.player_turn = {turn: 1};
+
+// var promise = angularFire(database, $scope, "ticTacToe");
+
+// promise, then(function() {
+
+$scope.rooms=[];
+
 
 $scope.ticTacToe= [[{val:'', r:0,c:0},{val:'',r:0,c:1},{val:'',r:0,c:2}],
 [{val:'',r:1,c:0},{val:'',r:1,c:1},{val:'',r:1,c:2}],
-[{val:'', r:2,c:0},{val:'',r:2,c:1},{val:'',r:2,c:2}]];
+[{val:'', r:2,c:0},{val:'',r:2,c:1},{val:'',r:2,c:2}]]; 
+
+// }
+
+angularFire(database, $scope, "ticTacToe");
+// angularFire(database, $scope, "player_turn");
+
+// database.set('player_turn' + player_turn);
+
 
 
 $scope.clickSquare = function(cell) { 
@@ -62,7 +91,7 @@ $scope.clickSquare = function(cell) {
       if (cell.val != "X" && cell.val != "O") {
 
 
-        cell.val = ($scope.player_turn % 2 == 1 ? "X" : "O");
+        cell.val = ($scope.player_turn.turn % 2 == 1 ? "X" : "O");
 
       // if ($scope.player_turn % 2) {
 
@@ -97,7 +126,7 @@ $scope.clickSquare = function(cell) {
     
     // document.getElementById("notification").innerHTML = "Player "+(($scope.player_turn % 2)+1)+" - your turn!";
 
-    $scope.player_turn++;
+    $scope.player_turn.turn++;
 
 
 
@@ -162,7 +191,7 @@ $scope.clickSquare = function(cell) {
      
 
 
-        if ($scope.player_turn > 4)
+        if ($scope.player_turn.turn > 4)
         {
 
            // console.log(this.ticTacToe[cell.r][cell.c].val);
@@ -208,7 +237,7 @@ $scope.clickSquare = function(cell) {
               // alert("diagonal win 2");  
               win();
                 // alert("test win 8--breaks it");
-              else if ($scope.player_turn > 9) 
+              else if ($scope.player_turn.turn > 9) 
       
              // alert("tied");
               tie();
@@ -232,6 +261,14 @@ $scope.clickSquare = function(cell) {
     $scope.startAgain =function() {
 
     location.href="index.html";
+
+    database.remove();
+
+    
+    // disconnectRef.onDisconnect().remove();
+
+    // backbone.reset();
+
 
     // $route.reload();
 
