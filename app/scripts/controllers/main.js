@@ -243,9 +243,11 @@ $scope.clickSquare = function(cell) {
       // var isitmyturn;
 
 
-if ($scope.player = $scope.rooms[$scope.gameId].turn) {
+if ($scope.player == $scope.rooms[$scope.gameId].turn) {
 
-    console.log("inside the scopeid check");
+
+    console.log($scope.player);
+
 
 
       if (cell.val != "X" && cell.val != "O") {
@@ -301,6 +303,7 @@ if ($scope.player = $scope.rooms[$scope.gameId].turn) {
     // document.getElementById("notification").innerHTML = "Player "+(($scope.player_turn % 2)+1)+" - your turn!";
 
     $scope.rooms[$scope.gameId].player_turn++;
+
 
 
 
