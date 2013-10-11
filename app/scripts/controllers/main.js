@@ -140,8 +140,11 @@ $scope.beginNewGame = function() {
 
 // rooms.remove();
 $scope.startGameMessage = false;
-$scope.rooms[$scope.gameId].waiting = true;
 
+  if($scope.player == "p1")
+     $scope.rooms[$scope.gameId].waiting = true;
+   if($scope.player == "p2")
+    $scope.rooms[$scope.gameId].waiting = false;
 
 
 
