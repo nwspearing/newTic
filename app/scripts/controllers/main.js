@@ -3,8 +3,76 @@
 
 angular.module('newTicApp').controller('MainCtrl', function($scope, angularFire) {
 
-var database = new Firebase("https://newtic-nws.firebaseio.com");
+$scope.rooms = [];
+$scope.queue = {};
+
+
+
+var rooms = new Firebase("https://newtic-nws.firebaseio.com/rooms");
 var disconnectRef = new Firebase('https://newtic-nws.firebaseio.com/disconnectdata');
+
+angularFire(rooms, $scope, "rooms").then(function () {
+
+  var queue = new Firebase("https://newtic-nws.firebaseio.com/queue")
+  angularFire(queue, $scope, "queue").then(function () {
+    if ($scope.queue.gameId == undefined) {
+          console.log("I'm player 1");
+          $scope.player = "p1";
+
+          $scope.rooms.push({
+  
+
+            player_turn: 1,
+
+            turn: 'p1',
+
+            ticTacToe: [[{val:'', r:0,c:0},{val:'',r:0,c:1},{val:'',r:0,c:2}],
+            [{val:'',r:1,c:0},{val:'',r:1,c:1},{val:'',r:1,c:2}],
+            [{val:'', r:2,c:0},{val:'',r:2,c:1},{val:'',r:2,c:2}]],
+
+            players_in_room: 0,
+
+            // game_ended: false,
+
+            // allowturn: true,
+
+            // whoami: "X",
+
+
+            game_ended: false,
+
+            // game_state: "playing",
+
+            // game_won: false,
+
+            // game_lost: false,
+
+            // game_tied: false
+              });
+
+
+$scope.gameId = $scope.rooms.length - 1;
+          $scope.queue.gameId = $scope.gameId;
+          console.log("Player 1's game is: " + $scope.gameId);
+
+      } else {
+          console.log("I'm player 2");
+          $scope.player = "p2";
+
+          $scope.gameId = $scope.queue.gameId;
+          $scope.queue = {};
+          console.log("Player 2's game is: " + $scope.gameId);
+        }
+      });
+
+    });
+
+
+
+// code.angular.org
+// $cookie
+// $cookie.store
+
 
 
 // var database = new Firebase("https://newtic-nws.firebaseio.com");
@@ -34,33 +102,58 @@ var disconnectRef = new Firebase('https://newtic-nws.firebaseio.com/disconnectda
 // [{val:'', r:2,c:0},{val:'',r:2,c:1},{val:'',r:2,c:2}]];
 
 
-$scope.rooms = {
-  
 
-player_turn: 1,
 
-ticTacToe: [[{val:'', r:0,c:0},{val:'',r:0,c:1},{val:'',r:0,c:2}],
-[{val:'',r:1,c:0},{val:'',r:1,c:1},{val:'',r:1,c:2}],
-[{val:'', r:2,c:0},{val:'',r:2,c:1},{val:'',r:2,c:2}]],
 
-players_in_room: 0,
+// }; // end angularFire(database)
 
-game_ended: false,
+
+
+// var whoami = "O";
+
+// function onlyonstart() {
+//   if ($scope.rooms.players_in_room == 1)
+//   whoami = "X";
+
+//   $scope.rooms.players_in_room = 1;
+
+// }
+
+// NEW GAME INITIATLIZATION
+
+ // $scope.startGameMessage = true;
+
+
+
+
+$scope.startGameMessage = true;
+
+
+// beginNewGame();
+
+$scope.beginNewGame = function() {
+
+// rooms.remove();
+$scope.startGameMessage = false;
+
 
 
 
 };
 
 
+
+
   $scope.$watch('rooms.game_ended', function(){ 
-    console.log("line 56")
+    console.log("I'm watching game_ended before the if");
     if($scope.rooms.game_ended){
-        console.log("line 58")
+        console.log("I'm going to display the win message");
         $scope.showWinMessage = true;
         $scope.showNotification = false;
         $scope.showEndNotification = true;
          // $scope.win();
-         console.log("line 61")
+         console.log("I displayed the win message");
+
 
     console.log($scope.rooms.game_ended+ "awesome!");
       }
@@ -68,18 +161,37 @@ game_ended: false,
     });
 
 
+  // $scope.$watch('rooms.game_tied', function(){ 
+  //   console.log("line 56")
+  //   if($scope.rooms.game_ended){
+  //       console.log("line 58")
+  //       $scope.showWinMessage = true;
+  //       $scope.showNotification = false;
+  //       $scope.showEndNotification = true;
+  //        // $scope.win();
+  //        console.log("line 61")
+
+  //   console.log($scope.rooms.game_ended+ "awesome!");
+  //     }
+
+  //   });
 
 
 
-angularFire(database, $scope, "rooms");
+
+// angularFire(database, $scope, "rooms");
 // angularFire(database, $scope, "player_turn");
 
 // database.set('player_turn' + player_turn);
 
-
+// document.onLoad(){
+// $scope.startGameMessage 
+// }
 
 $scope.clickSquare = function(cell) { 
   console.log("click!");
+  console.log($scope.rooms[$scope.gameId].player_turn);
+
   // alert("clicked!");
    // $scope.clickSquare = function(row, column) { 
 
@@ -128,12 +240,32 @@ $scope.clickSquare = function(cell) {
       // ($scope.playerTurn % 2 == 1 ? "X" : "O");
 
 
+      // var isitmyturn;
+
+
+if ($scope.player = $scope.rooms[$scope.gameId].turn) {
+
+    console.log("inside the scopeid check");
 
 
       if (cell.val != "X" && cell.val != "O") {
+        console.log("I'm inside the X and O check");
+
+        // isitmyturn = ($scope.rooms.player_turn % 2 == 1 ? "X" : "O");
+        
+        // if (isitmyturn == whoami)  {
 
 
-        cell.val = ($scope.rooms.player_turn % 2 == 1 ? "X" : "O");
+
+        cell.val = ($scope.rooms[$scope.gameId].player_turn % 2 == 1 ? "X" : "O");
+
+
+      if ($scope.player == 'p1') {
+        $scope.rooms[$scope.gameId].turn = 'p2';
+      }  else {
+        $scope.rooms[$scope.gameId].turn = 'p1';
+      }
+
 
       // if ($scope.player_turn % 2) {
 
@@ -168,7 +300,7 @@ $scope.clickSquare = function(cell) {
     
     // document.getElementById("notification").innerHTML = "Player "+(($scope.player_turn % 2)+1)+" - your turn!";
 
-    $scope.rooms.player_turn++;
+    $scope.rooms[$scope.gameId].player_turn++;
 
 
 
@@ -196,7 +328,7 @@ $scope.clickSquare = function(cell) {
       function win()
        {
 
-      
+        console.log("win function firing");
         $scope.showWinMessage = true;
         $scope.showNotification = false;
         $scope.showEndNotification = true;
@@ -209,7 +341,7 @@ $scope.clickSquare = function(cell) {
 
         function tie()
         {
-
+          console.log("tie function firing");
           $scope.showTieMessage = true;
           $scope.showNotification = false;
           $scope.showEndNotification = true;
@@ -220,9 +352,13 @@ $scope.clickSquare = function(cell) {
 
         }
 
+
+          //end isitmyturn
+      // }
+
       // end test to see if they clicked an already filled block
      } 
-
+    }   // end scope player check
 
         // TEST FOR WIN
 
@@ -235,7 +371,7 @@ $scope.clickSquare = function(cell) {
      
 
 
-        if ($scope.rooms.player_turn > 4)
+        if ($scope.rooms[$scope.gameId].player_turn > 4)
         {
 
            // console.log(this.ticTacToe[cell.r][cell.c].val);
@@ -266,22 +402,22 @@ $scope.clickSquare = function(cell) {
 
                 for (i=0; i<3; ++i)
                   {
-                if ($scope.rooms.ticTacToe[i][0].val == $scope.rooms.ticTacToe[i][1].val && $scope.rooms.ticTacToe[i][1].val != "" && $scope.rooms.ticTacToe[i][1].val == $scope.rooms.ticTacToe[i][2].val)
+                if ($scope.rooms[$scope.gameId].ticTacToe[i][0].val == $scope.rooms[$scope.gameId].ticTacToe[i][1].val && $scope.rooms[$scope.gameId].ticTacToe[i][1].val != "" && $scope.rooms[$scope.gameId].ticTacToe[i][1].val == $scope.rooms[$scope.gameId].ticTacToe[i][2].val)
                   win();
-                  else if ($scope.rooms.ticTacToe[0][i].val == $scope.rooms.ticTacToe[1][i].val && $scope.rooms.ticTacToe[1][i].val != "" && $scope.rooms.ticTacToe[1][i].val == $scope.rooms.ticTacToe[2][i].val)
+                  else if ($scope.rooms[$scope.gameId].ticTacToe[0][i].val == $scope.rooms[$scope.gameId].ticTacToe[1][i].val && $scope.rooms[$scope.gameId].ticTacToe[1][i].val != "" && $scope.rooms[$scope.gameId].ticTacToe[1][i].val == $scope.rooms[$scope.gameId].ticTacToe[2][i].val)
                   win();
 
-              else if ($scope.rooms.ticTacToe[0][0].val == $scope.rooms.ticTacToe[1][1].val && $scope.rooms.ticTacToe[1][1].val != "" && $scope.rooms.ticTacToe[1][1].val  == $scope.rooms.ticTacToe[2][2].val )
+              else if ($scope.rooms[$scope.gameId].ticTacToe[0][0].val == $scope.rooms[$scope.gameId].ticTacToe[1][1].val && $scope.rooms[$scope.gameId].ticTacToe[1][1].val != "" && $scope.rooms[$scope.gameId].ticTacToe[1][1].val  == $scope.rooms[$scope.gameId].ticTacToe[2][2].val )
             
               win();
                  // alert("diagonal win 1");
                
-             else if ($scope.rooms.ticTacToe[0][2].val == $scope.rooms.ticTacToe[1][1].val && $scope.rooms.ticTacToe[1][1].val != "" && $scope.rooms.ticTacToe[1][1].val  == $scope.rooms.ticTacToe[2][0].val )
+             else if ($scope.rooms[$scope.gameId].ticTacToe[0][2].val == $scope.rooms[$scope.gameId].ticTacToe[1][1].val && $scope.rooms[$scope.gameId].ticTacToe[1][1].val != "" && $scope.rooms[$scope.gameId].ticTacToe[1][1].val  == $scope.rooms[$scope.gameId].ticTacToe[2][0].val )
               
               // alert("diagonal win 2");  
               win();
                 // alert("test win 8--breaks it");
-              else if ($scope.rooms.player_turn > 9) 
+              else if ($scope.rooms[$scope.gameId].player_turn > 9) 
       
              // alert("tied");
               tie();
@@ -306,7 +442,11 @@ $scope.clickSquare = function(cell) {
 
     location.href="index.html";
 
-    database.remove();
+    rooms.remove();
+
+    // onlyonstart();
+
+    $scope.startGameMessage = false;
 
     
     // disconnectRef.onDisconnect().remove();

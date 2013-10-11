@@ -3,7 +3,7 @@
 <header>tic-tac-toe</header>  
 
 <div class="notification" ng-init ="showNotification = true" ng-show="showNotification">
-Player {{((rooms.player_turn+1) %2)+1}} - Your Turn
+Player {{(($scope.rooms[$scope.gameId].player_turn+1) %2)+1}} - Your Turn
 </div>
 
 
@@ -12,12 +12,19 @@ Player {{((rooms.player_turn+1) %2)+1}} - Your Turn
 </div>
   
 
-<div id="container" ng-init = "showWinMessage = false" ng-init = "showTieMessage = false">
+<div id="container" ng-init = "showWinMessage = false" ng-init = "showTieMessage = false" ng-init = "startGameMessage = true">
 
 <!-- <div id="container" ng-controller="MainCtrl">  -->
+    
+<div id="start_game_overlay" ng-show = "startGameMessage">
+  Start a New Game
+  <input type="button" id="btn2" value="Start" ng-click="beginNewGame()"/>
+
+</div>
+
 
 <div id="win_message_overlay" ng-show="showWinMessage">
-  Player {{(rooms.player_turn %2)+1}} Wins!
+  Player {{($scope.rooms[$scope.gameId].player_turn %2)+1}} Wins!
   <br>
 
   <input type="button" id="btn2" value="Start New Game" ng-show="showWinMessage" ng-click="startAgain()"/>
@@ -38,7 +45,7 @@ Player {{((rooms.player_turn+1) %2)+1}} - Your Turn
 
 <!-- {{"cell" + $index}} -->
 
-<div id = "row_array" ng-repeat="row in rooms.ticTacToe">
+<div id = "row_array" ng-repeat="row in rooms[gameId].ticTacToe">
     <!-- {{$index}} -->
   <!-- <div class="sqr" ng-repeat="cell in row track by $index" ng-click="cell=playerChoice()" ng-init="cell=''"> -->
   <div ng-class="{sqr:true, topline:$parent.$index!=0, leftline:$index!=0}" ng-repeat="cell in row" ng-click="clickSquare(cell)">

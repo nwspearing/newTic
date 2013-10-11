@@ -78,6 +78,23 @@ body {
     z-index: 2;
 }
 
+#start_game_overlay {
+    box-sizing: border-box;
+    position: absolute;
+    top: 250px;
+    left: 125px;
+    height: 150px;
+    width: 300px;
+    padding: 50px;
+    font-size: 30px;
+    background: black;
+    color: white;
+    text-align: center;
+    opacity: .92;
+    /*display: none;*/
+    z-index: 2;
+}
+
 
 
 header {
