@@ -3,7 +3,8 @@
 <header>tic-tac-toe</header>  
 
 <div class="notification" ng-init ="showNotification = true" ng-show="showNotification">
-Player {{(($scope.rooms[$scope.gameId].player_turn+1) %2)+1}} - Your Turn
+You are {{player}}.   Player {{((rooms[gameId].player_turn+1) %2)+1}} - Your Turn
+<!-- Player {{(($scope.rooms[$scope.gameId].player_turn+1) %2)}} - Your Turn -->
 </div>
 
 
@@ -24,7 +25,7 @@ Player {{(($scope.rooms[$scope.gameId].player_turn+1) %2)+1}} - Your Turn
 
 
 <div id="win_message_overlay" ng-show="showWinMessage">
-  Player {{($scope.rooms[$scope.gameId].player_turn %2)+1}} Wins!
+  Player {{((rooms[gameId].player_turn) %2)+1}} Wins!
   <br>
 
   <input type="button" id="btn2" value="Start New Game" ng-show="showWinMessage" ng-click="startAgain()"/>

@@ -261,6 +261,9 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn) {
 
         cell.val = ($scope.rooms[$scope.gameId].player_turn % 2 == 1 ? "X" : "O");
 
+        console.log("It was turn " +$scope.rooms[$scope.gameId].player_turn);
+        $scope.rooms[$scope.gameId].player_turn++;
+        console.log("It's now turn " +$scope.rooms[$scope.gameId].player_turn);
 
       if ($scope.player == 'p1') {
         $scope.rooms[$scope.gameId].turn = 'p2';
@@ -302,7 +305,7 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn) {
     
     // document.getElementById("notification").innerHTML = "Player "+(($scope.player_turn % 2)+1)+" - your turn!";
 
-    $scope.rooms[$scope.gameId].player_turn++;
+    // $scope.rooms[$scope.gameId].player_turn++;
 
 
 
