@@ -13,7 +13,7 @@ var disconnectRef = new Firebase('https://newtic-nws.firebaseio.com/disconnectda
 
 angularFire(rooms, $scope, "rooms").then(function () {
 
-  var queue = new Firebase("https://newtic-nws.firebaseio.com/queue")
+  var queue = new Firebase("https://newtic-nws.firebaseio.com/queue");
   angularFire(queue, $scope, "queue").then(function () {
     if ($scope.queue.gameId == undefined) {
           console.log("I'm player 1");
@@ -21,6 +21,7 @@ angularFire(rooms, $scope, "rooms").then(function () {
 
           $scope.rooms.push({
   
+            
 
             player_turn: 1,
 
@@ -48,6 +49,9 @@ angularFire(rooms, $scope, "rooms").then(function () {
             // game_lost: false,
 
             // game_tied: false
+
+            waiting: false
+
               });
 
 
@@ -62,6 +66,7 @@ $scope.gameId = $scope.rooms.length - 1;
           $scope.gameId = $scope.queue.gameId;
           $scope.queue = {};
           console.log("Player 2's game is: " + $scope.gameId);
+          $scope.rooms[$scope.gameId].waiting = false;
         }
       });
 
@@ -135,6 +140,7 @@ $scope.beginNewGame = function() {
 
 // rooms.remove();
 $scope.startGameMessage = false;
+$scope.rooms[$scope.gameId].waiting = true;
 
 
 
@@ -144,9 +150,9 @@ $scope.startGameMessage = false;
 
 
 
-  $scope.$watch('rooms.game_ended', function(){ 
+  $scope.$watch('$scope.rooms[$scope.gameId].game_ended', function(){ 
     console.log("I'm watching game_ended before the if");
-    if($scope.rooms.game_ended){
+    if($scope.rooms[$scope.gameId].game_ended){
         console.log("I'm going to display the win message");
         $scope.showWinMessage = true;
         $scope.showNotification = false;
@@ -155,7 +161,7 @@ $scope.startGameMessage = false;
          console.log("I displayed the win message");
 
 
-    console.log($scope.rooms.game_ended+ "awesome!");
+    console.log($scope.rooms[$scope.gameId].game_ended+ "awesome!");
       }
 
     });
@@ -243,7 +249,7 @@ $scope.clickSquare = function(cell) {
       // var isitmyturn;
 
 
-if ($scope.player == $scope.rooms[$scope.gameId].turn) {
+if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.gameId].waiting == false)) {
 
 
     console.log($scope.player);
@@ -338,7 +344,9 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn) {
         $scope.showWinMessage = true;
         $scope.showNotification = false;
         $scope.showEndNotification = true;
-        $scope.rooms.game_ended = true;
+        // $scope.rooms.game_ended = true;
+        $scope.rooms[$scope.gameId].game_ended = true;
+        // $scope.game_ended = true;
         // document.getElementById("message_overlay").style.zIndex = "2";
         // document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>";
         // document.getElementById("notification").innerHTML = "";
@@ -351,7 +359,9 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn) {
           $scope.showTieMessage = true;
           $scope.showNotification = false;
           $scope.showEndNotification = true;
-          $scope.rooms.game_ended = true;
+          // $scope.rooms.game_ended = true;
+          $scope.rooms[$scope.gameId].game_ended = true;
+          // $scope.game_ended = true;
            // document.getElementById("message_overlay").style.zIndex = "2";
            // document.getElementById("message_overlay").innerHTML = "You both tied! " +"<br/>"+ "<input type='button' value='Start Again' ng-click='startAgain()'/>";
            // document.getElementById("notification").innerHTML = "";
@@ -446,15 +456,21 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn) {
 
     $scope.startAgain =function() {
 
-    location.href="index.html";
+   
 
-    rooms.remove();
+    // rooms.remove();
 
     // onlyonstart();
 
-    $scope.startGameMessage = false;
+       // $scope.startGameMessage = false;
+       // $scope.showWinMessage = false;
+       //  $scope.showNotification = true;
+       //  $scope.showEndNotification = false;
 
-    
+       // angularFire();
+
+     location.href="index.html";
+
     // disconnectRef.onDisconnect().remove();
 
     // backbone.reset();

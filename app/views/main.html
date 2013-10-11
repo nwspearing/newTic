@@ -23,6 +23,11 @@ You are {{player}}.   Player {{((rooms[gameId].player_turn+1) %2)+1}} - Your Tur
 
 </div>
 
+<div id="waiting_overlay" ng-show = "rooms[gameId].waiting">
+  Waiting for Player 2
+  </div>
+
+
 
 <div id="win_message_overlay" ng-show="showWinMessage">
   Player {{((rooms[gameId].player_turn) %2)+1}} Wins!
