@@ -13,39 +13,56 @@ You are {{player}}.   Player {{((rooms[gameId].player_turn+1) %2)+1}} - Your Tur
 </div>
   
 
-<div id="container" ng-init = "showWinMessage = false" ng-init = "showTieMessage = false" ng-init = "startGameMessage = true">
+<div id="container" ng-init = "gameWon = false" ng-init = "gameTied = false" ng-init = "startGameMessage = true">
+
+ <!--  <div id="container" ng-init = "showWinMessage = false" ng-init = "showTieMessage = false" ng-init = "startGameMessage = true"> -->
 
 <!-- <div id="container" ng-controller="MainCtrl">  -->
     
-<div id="start_game_overlay" ng-show = "startGameMessage">
+<!-- <div id="start_game_overlay" ng-show = "startGameMessage">
   Start a New Game
   <input type="button" id="btn2" value="Start" ng-click="beginNewGame()"/>
 
-</div>
+</div> -->
 
 <div id="waiting_overlay" ng-show = "rooms[gameId].waiting">
   Waiting for Player 2
   </div>
 
 
-
-<div id="win_message_overlay" ng-show="showWinMessage">
+<div id="win_message_overlay" ng-show="rooms[gameId].gameWon">
   Player {{((rooms[gameId].player_turn) %2)+1}} Wins!
   <br>
 
-  <input type="button" id="btn2" value="Start New Game" ng-show="showWinMessage" ng-click="startAgain()"/>
+
+<!-- <div id="win_message_overlay" ng-show="showWinMessage">
+  Player {{((rooms[gameId].player_turn) %2)+1}} Wins!
+  <br> -->
+
+
+  <input type="button" id="btn2" value="Start New Game" ng-show="rooms[gameId].gameWon" ng-click="startAgain()"/>
+<!--   <input type="button" id="btn2" value="Start New Game" ng-show="showWinMessage" ng-click="startAgain()"/> -->
   <!-- <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/> -->
   
 </div>
 
-<div id="tie_message_overlay" ng-show="showTieMessage">
+<div id="tie_message_overlay" ng-show="rooms[gameId].gameTied">
   You Tied!
   <br>
 
-  <input type="button" id="btn2" ng-show="showTieMessage" value="Start New Game" ng-click="startAgain()"/>
+<!-- <div id="tie_message_overlay" ng-show="showTieMessage">
+  You Tied!
+  <br> -->
+
+  <input type="button" id="btn2" ng-show="rooms[gameId].gameTied" value="Start New Game" ng-click="startAgain()"/>
+
+<!--   <input type="button" id="btn2" ng-show="showTieMessage" value="Start New Game" ng-click="startAgain()"/> -->
   <!-- <input type="button" id="btn2" value="Start Again" ng-click="startAgain()"/> -->
   
 </div>
+
+
+
 
 
 

@@ -5,6 +5,8 @@ angular.module('newTicApp').controller('MainCtrl', function($scope, angularFire)
 
 $scope.rooms = [];
 $scope.queue = {};
+// $scope.gameWon = false;
+// $scope.gameTied = false;
 
 
 
@@ -40,15 +42,20 @@ angularFire(rooms, $scope, "rooms").then(function () {
             // whoami: "X",
 
 
+            gameWon: false,
+
+            gameTied: false,
+
+
             game_ended: false,
 
             // game_state: "playing",
 
-            // game_won: false,
+            // gameWon: false,
 
             // game_lost: false,
 
-            // game_tied: false
+            // gameTied: false
 
             waiting: false
 
@@ -68,11 +75,45 @@ $scope.gameId = $scope.rooms.length - 1;
           console.log("Player 2's game is: " + $scope.gameId);
           $scope.rooms[$scope.gameId].waiting = false;
         }
+
+
+console.log($scope.rooms);
+console.log($scope.rooms[$scope.gameId]);
+var game_ended = $scope.rooms[$scope.gameId].game_ended;
+
+  $scope.$watch('game_ended', function(){ 
+    console.log("I'm watching game_ended before the if");
+    if(game_ended){
+        console.log("I'm going to display the win message");
+        $scope.showWinMessage = true;
+        $scope.showNotification = false;
+        $scope.showEndNotification = true;
+        // $scope.rooms[$scope.gameId].game_ended=true;
+         // $scope.win();
+         console.log("I displayed the win message");
+
+
+    console.log(game_ended+ "awesome!");
+      }
+
+
+
+
       });
+
+
+
 
     });
 
 
+    // this is where angular fire used to be
+
+
+
+
+
+ 
 
 // code.angular.org
 // $cookie
@@ -136,41 +177,24 @@ $scope.startGameMessage = true;
 
 // beginNewGame();
 
-$scope.beginNewGame = function() {
+// $scope.beginNewGame = function() {
 
-// rooms.remove();
-$scope.startGameMessage = false;
+// // rooms.remove();
+// $scope.startGameMessage = false;
 
-  if($scope.player == "p1")
-     $scope.rooms[$scope.gameId].waiting = true;
-   if($scope.player == "p2")
-    $scope.rooms[$scope.gameId].waiting = false;
-
-
-
-};
+//   if($scope.player == "p1")
+//      $scope.rooms[$scope.gameId].waiting = true;
+//    if($scope.player == "p2")
+//     $scope.rooms[$scope.gameId].waiting = false;
 
 
 
-
-  $scope.$watch('$scope.rooms[$scope.gameId].game_ended', function(){ 
-    console.log("I'm watching game_ended before the if");
-    if($scope.rooms[$scope.gameId].game_ended){
-        console.log("I'm going to display the win message");
-        $scope.showWinMessage = true;
-        $scope.showNotification = false;
-        $scope.showEndNotification = true;
-         // $scope.win();
-         console.log("I displayed the win message");
+// };
 
 
-    console.log($scope.rooms[$scope.gameId].game_ended+ "awesome!");
-      }
-
-    });
 
 
-  // $scope.$watch('rooms.game_tied', function(){ 
+  // $scope.$watch('rooms.gameTied', function(){ 
   //   console.log("line 56")
   //   if($scope.rooms.game_ended){
   //       console.log("line 58")
@@ -188,6 +212,7 @@ $scope.startGameMessage = false;
 
 
 
+
 // angularFire(database, $scope, "rooms");
 // angularFire(database, $scope, "player_turn");
 
@@ -196,6 +221,10 @@ $scope.startGameMessage = false;
 // document.onLoad(){
 // $scope.startGameMessage 
 // }
+
+
+
+
 
 $scope.clickSquare = function(cell) { 
   console.log("click!");
@@ -349,6 +378,11 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.ga
         $scope.showEndNotification = true;
         // $scope.rooms.game_ended = true;
         $scope.rooms[$scope.gameId].game_ended = true;
+        $scope.gameWon = true;
+        game_ended = true;
+
+        
+
         // $scope.game_ended = true;
         // document.getElementById("message_overlay").style.zIndex = "2";
         // document.getElementById("message_overlay").innerHTML = "Player "+ ((player_turn % 2)+1) + " wins! " +"<br/>";
@@ -364,6 +398,11 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.ga
           $scope.showEndNotification = true;
           // $scope.rooms.game_ended = true;
           $scope.rooms[$scope.gameId].game_ended = true;
+          $scope.gameTied = true;
+          game_ended = true;
+
+
+
           // $scope.game_ended = true;
            // document.getElementById("message_overlay").style.zIndex = "2";
            // document.getElementById("message_overlay").innerHTML = "You both tied! " +"<br/>"+ "<input type='button' value='Start Again' ng-click='startAgain()'/>";
@@ -422,25 +461,42 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.ga
                 for (i=0; i<3; ++i)
                   {
                 if ($scope.rooms[$scope.gameId].ticTacToe[i][0].val == $scope.rooms[$scope.gameId].ticTacToe[i][1].val && $scope.rooms[$scope.gameId].ticTacToe[i][1].val != "" && $scope.rooms[$scope.gameId].ticTacToe[i][1].val == $scope.rooms[$scope.gameId].ticTacToe[i][2].val)
-                  win();
-                  else if ($scope.rooms[$scope.gameId].ticTacToe[0][i].val == $scope.rooms[$scope.gameId].ticTacToe[1][i].val && $scope.rooms[$scope.gameId].ticTacToe[1][i].val != "" && $scope.rooms[$scope.gameId].ticTacToe[1][i].val == $scope.rooms[$scope.gameId].ticTacToe[2][i].val)
-                  win();
+                  {
+                    $scope.gameWon = true;
 
+                  win();
+                  $scope.rooms[$scope.gameId].gameWon = true;
+
+                }
+                  else if ($scope.rooms[$scope.gameId].ticTacToe[0][i].val == $scope.rooms[$scope.gameId].ticTacToe[1][i].val && $scope.rooms[$scope.gameId].ticTacToe[1][i].val != "" && $scope.rooms[$scope.gameId].ticTacToe[1][i].val == $scope.rooms[$scope.gameId].ticTacToe[2][i].val)
+                  {
+                  $scope.gameWon = true;
+                  win();
+                  $scope.rooms[$scope.gameId].gameWon = true;
+                }
               else if ($scope.rooms[$scope.gameId].ticTacToe[0][0].val == $scope.rooms[$scope.gameId].ticTacToe[1][1].val && $scope.rooms[$scope.gameId].ticTacToe[1][1].val != "" && $scope.rooms[$scope.gameId].ticTacToe[1][1].val  == $scope.rooms[$scope.gameId].ticTacToe[2][2].val )
-            
+            {
+              $scope.gameWon = true;
               win();
+              $scope.rooms[$scope.gameId].gameWon = true;
                  // alert("diagonal win 1");
-               
+             }  
              else if ($scope.rooms[$scope.gameId].ticTacToe[0][2].val == $scope.rooms[$scope.gameId].ticTacToe[1][1].val && $scope.rooms[$scope.gameId].ticTacToe[1][1].val != "" && $scope.rooms[$scope.gameId].ticTacToe[1][1].val  == $scope.rooms[$scope.gameId].ticTacToe[2][0].val )
-              
+              {
               // alert("diagonal win 2");  
+              $scope.gameWon = true;
               win();
+              $scope.rooms[$scope.gameId].gameWon = true;
                 // alert("test win 8--breaks it");
+              }
               else if ($scope.rooms[$scope.gameId].player_turn > 9) 
-      
+                {
              // alert("tied");
+             $scope.gameTied = true;
               tie();
+              $scope.rooms[$scope.gameId].gameTied = true;
             // end testing for win
+              }
 
             }
                          
@@ -455,6 +511,7 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.ga
   // end TicTacCtrl
 
    }
+
 
 
     $scope.startAgain =function() {
@@ -483,6 +540,12 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.ga
 
      };
 
+
+
+
+            // this is the end of angularFire
+         
+ });
 
 
 
