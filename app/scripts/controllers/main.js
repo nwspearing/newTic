@@ -458,6 +458,7 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.ga
           //     // alert("test win 6--breaks it"); 
 
 
+i = 0;
                 for (i=0; i<3; ++i)
                   {
                 if ($scope.rooms[$scope.gameId].ticTacToe[i][0].val == $scope.rooms[$scope.gameId].ticTacToe[i][1].val && $scope.rooms[$scope.gameId].ticTacToe[i][1].val != "" && $scope.rooms[$scope.gameId].ticTacToe[i][1].val == $scope.rooms[$scope.gameId].ticTacToe[i][2].val)
@@ -518,7 +519,7 @@ if ($scope.player == $scope.rooms[$scope.gameId].turn && ($scope.rooms[$scope.ga
 
    
 
-    // rooms.remove();
+
 
     // onlyonstart();
 
